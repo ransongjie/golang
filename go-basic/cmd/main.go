@@ -6,6 +6,7 @@ import (
 	"com.xcrj/golang/go-basic/condition"
 	"com.xcrj/golang/go-basic/oop"
 	"com.xcrj/golang/go-basic/err"
+	"com.xcrj/golang/go-basic/test"
 )
 
 func main() {
@@ -13,7 +14,8 @@ func main() {
 	// operators()
 	// conditions()
 	// oops()
-	errs()
+	// errs()
+	tests()
 }
 
 func dataType() {
@@ -38,4 +40,8 @@ func oops(){
 
 func errs(){
 	err.RunErr()
+}
+
+func tests(){
+	test.RunTest()
 }
