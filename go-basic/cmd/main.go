@@ -9,7 +9,7 @@ import (
 func main() {
 	// dataType()
 	// operators()
-	conditions()
+	// conditions()
 }
 
 func dataType() {
