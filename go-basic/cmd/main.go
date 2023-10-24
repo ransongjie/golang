@@ -2,10 +2,12 @@ package main
 
 import (
 	"com.xcrj/golang/go-basic/data_type"
+	"com.xcrj/golang/go-basic/operator"
 )
 
 func main() {
-	dataType()
+	// dataType()
+	operators()
 }
 
 func dataType() {
@@ -14,4 +16,8 @@ func dataType() {
 	// data_type.RunTypeLen()
 	// data_type.RunSliceDetail()
 	data_type.RunMapDetail()
+}
+
+func operators(){
+	operator.RunOperator()
 }
