@@ -4,12 +4,14 @@ import (
 	"com.xcrj/golang/go-basic/data_type"
 	"com.xcrj/golang/go-basic/operator"
 	"com.xcrj/golang/go-basic/condition"
+	"com.xcrj/golang/go-basic/oop"
 )
 
 func main() {
 	// dataType()
 	// operators()
 	// conditions()
+	oops()
 }
 
 func dataType() {
@@ -26,4 +28,8 @@ func operators(){
 
 func conditions(){
 	condition.RunCondition()
+}
+
+func oops(){
+	oop.RunStruct()
 }
