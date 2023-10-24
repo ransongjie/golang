@@ -18,7 +18,7 @@ func RunOperator() {
 	fmt.Println(aint * bint)
 	fmt.Println(aint / bint)
 	fmt.Println(aint % bint)
-	aint++//必须单独写为一行
+	aint++
 	aint--
 	fmt.Println(aint)
 	fmt.Println(aint)

@@ -3,8 +3,8 @@
 |---|---|
 |data_type|Data type|
 |operator|Operator|
-|control|Control structure|
-|func|file function|
+|condition|Condition|
+|funcs|file function|
 |oop|struct and interface|
 |err|error handling|
 |concurrent|concurrent|
@@ -15,9 +15,11 @@
 
 # operator
 赋值运算符，算术运算符，比较运算符，逻辑运算符，位运算符，指针相关运算符
+- 只有a++和a--
 
 # control
 条件，循环
+- 默认无case穿透，需要穿透要加上fallthrough
 
 # generic
 泛型
