@@ -19,11 +19,11 @@ func main() {
 }
 
 func dataType() {
-	// data_type.RunDataType()
+	data_type.RunDataType()
 	// data_type.RunDefaultValue()
 	// data_type.RunTypeLen()
 	// data_type.RunSliceDetail()
-	data_type.RunMapDetail()
+	// data_type.RunMapDetail()
 }
 
 func operators(){

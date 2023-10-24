@@ -40,7 +40,10 @@ func RunDataType() {
 	var abool bool = false
 	fmt.Println(abool)
 
-	//字符，无此类型
+	//字符
+	var arune rune='a'//rune 等同于uint32
+	fmt.Printf("字符类型：%c",arune)
+	fmt.Println()
 
 	//复数
 	var acomplex64 complex64 = 1 + 2i

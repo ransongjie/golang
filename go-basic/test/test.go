@@ -2,21 +2,50 @@ package test
 import (
 	"fmt"
 	"strings"
+	"unicode"
+	"reflect"
+	"bytes"
+	"sort"
 )
 
 func RunTest(){
-	// test1()
-	// test2()
-	// test3()
-	// test4()
-	// test5()
-	// test6()
-	// test7()
-	// test8()
-	// test9()
-	// test10()
-	// test11()
+	test1()
+	test2()
+	test3()
+	test4()
+	test5()
+	test6()
+	test7()
+	test8()
+	test9()
+	test10()
+	
+	test11()
 	test12()
+	test13()
+	test14()
+	test15()
+	test16()
+	test17()
+	test18()
+	test19()
+	test20()
+
+	test21()
+	test22()
+	test23()
+	test24()
+	test25()
+	test26()
+	test27()
+	// test28()
+	test29()
+	test30()
+
+	test41()
+	test42()
+	test43()
+	test44()
 }
 
 // func()(sum int) 返回值变量被默认初始化
@@ -169,4 +198,396 @@ func test12a(as *[]int){
 	*as=append(*as,2)
 	// [1 2]
 	fmt.Println(*as)
+}
+
+// 深拷贝copy(slice,slice) 》 append(slice,slice) append引用
+func test13(){
+	var lss [][]int=[][]int{}
+	var ls []int=[]int{}
+	ls=append(ls,1)
+	ls=append(ls,2)
+	ls=append(ls,3)
+	// 是append 引用，所以进行深拷贝, 注意仍然不能修改ls2
+	var ls2 []int=make([]int,len(ls))
+	copy(ls2,ls)
+	lss=append(lss,ls2)
+	fmt.Println(lss)
+	ls[0]=10
+	fmt.Println(lss)
+}
+
+// append(slice,slice) append引用
+func test14(){
+	//slice append slice
+	var lss [][]int=[][]int{}
+	var ls []int=[]int{}
+	ls=append(ls,1)
+	ls=append(ls,2)
+	ls=append(ls,3)
+	// 是append 引用
+	lss=append(lss,ls)
+	fmt.Println(lss)
+	ls[0]=10
+	fmt.Println(lss)
+}
+
+// 切片元素赋值, 必须使用 索引，不能使用range
+func test15(){
+	var fs []int=make([]int,3)
+	// for _,f:=range fs{
+	// 	f=10;
+	// }
+	for i:=0;i<3;i++{
+		fs[i]=10
+	}
+	fmt.Println(fs)
+}
+
+// 二维slice创建，取值
+func test16(){
+	// xcrj 注意 二维slice的创建不需要 两个括号 {{}} 如果写两个括号就是初始化了二维slice的第一行数据
+	var ss [][]int=[][]int{}
+	// slice没有给len不能直接赋值，必须append
+	// ss[0]=[]int{}
+	ss=append(ss,[]int{})
+	// slice没有给len不能直接赋值，必须append
+	// ss[0][1]=1
+	// ss[0][2]=2
+	ss[0]=append(ss[0],1)
+	ss[0]=append(ss[0],2)
+	fmt.Println(ss)
+	//
+	var as []int=ss[0]
+	fmt.Println(as[0])
+}
+
+// slice range是顺序遍历的
+func test17(){
+	var as []int=[]int{}
+	as=append(as,1)
+	as=append(as,2)
+	as=append(as,3)
+	for _,a:=range as{
+		fmt.Println(a)
+	}
+}
+
+//格式化输出
+func test18(){
+	var c int;
+	var d float32;
+	//0
+	fmt.Printf("%d",c)
+	//0.0
+	fmt.Printf("%0.1f",d)
+}
+
+//全局变量默认值
+var a int;
+var b float32;
+func test19(){
+	//0
+	fmt.Println(a)
+	//0.0
+	fmt.Println(b)
+}
+
+//字符相减》类型转换为int
+func test20(){
+	var a rune='2'//rune 等同于uint32
+	var b rune='0'
+	var i int=int(a-b)//类型转换
+	fmt.Println(i)
+}
+
+// slice 的索引值不能为 -数
+func test21(){
+	//slice -1
+	var s []int=[]int{}
+	s=append(s,1)
+	s=append(s,2)
+	// slice 的索引值不能为 -数
+	// fmt.Println(s[-1])
+}
+
+//无返回值函数 java返回void
+func test22(){
+	//无返回值函数 java返回void
+}
+
+//slice 实现 队列
+func test23(){
+	//slice 实现 队列
+	var queue []int=[]int{}
+	//入队
+	queue=append(queue,1)
+	queue=append(queue,2)
+	queue=append(queue,3)
+	//出队
+	var peak int=queue[0]
+	fmt.Println(peak)
+	queue=queue[1:]
+}
+
+//slice 实现 栈
+func test24(){
+	//slice 实现 栈
+	var limit int=10
+	var stack []int=make([]int,0)
+	//push 压栈
+	for i:=0;i<3;i++{
+		stack=append(stack,i)
+	}
+	//pop 弹出
+	var val int=stack[len(stack)-1]
+	stack=stack[:len(stack)-1]
+	fmt.Println(val)
+	//peak 查看栈顶元素
+	var pk int=stack[len(stack)-1]
+	fmt.Println(pk)
+	//栈空
+	if len(stack)==0{
+		fmt.Println("栈空")
+	}
+	//栈满
+	if len(stack)>limit{
+		fmt.Println("栈满")
+	}else{
+		fmt.Println("栈未满")
+	}
+}
+
+//判断是字符还是数字
+func test25(){
+	//判断字母 数字
+	var a rune='a'
+	var ab bool=unicode.IsLetter(a)
+	fmt.Println(ab)
+
+	var a1 rune='2'
+	var ab1 bool=unicode.IsDigit(a1)
+	fmt.Println(ab1)
+}
+
+//字母 大小写转换
+func test26(){
+	//unicode
+	//字母 大写转小写
+	var a rune='A'
+	var al rune=unicode.ToLower(a)
+	fmt.Printf("%c",al)
+	//字母 大写转小写 反之
+	var a1 rune='a'
+	var al1 rune=unicode.ToUpper(a1)
+	fmt.Printf("%c",al1)
+}
+
+//字符串 大小写转换
+func test27(){
+	// strings
+	//字符串 大写转小写
+	var a string="ABCD"
+	var al string=strings.ToLower(a)
+	fmt.Println(al)
+	//字符串 大写转小写 反之
+	var a1 string="abcd"
+	var al1 string=strings.ToUpper(a1)
+	fmt.Println(al1)
+}
+
+//string 》字符串数组[]rune
+func test29(){
+	// []rune切片转string
+	var str1 string="xcrj"
+	// 写法 强制类型转换
+	var cs []rune=[]rune(str1)
+	// 写法 强制类型转换
+	var str2 string=string(cs)
+	fmt.Println(str2)
+}
+
+//map key存在判断
+func test30(){
+	// 是否存在
+	var am map[string]int=map[string]int{"xcrj":1}
+	v:=am["xcrj"]
+	fmt.Println(v)
+	_,ok:=am["xcrj"]
+	fmt.Println(ok)
+}
+
+//空结构体不占用空间
+type void struct{}
+var vv void
+//创建set
+func test31(){	
+	// map[string]类型
+	var set map[string]void=make(map[string]void)
+	// set["xcrj"]=值
+	set["xcrj"]=vv
+	set["xcrj1"]=vv
+	fmt.Println(set)
+}
+
+// 数组转slice slice转数组
+func test32(){
+	// array to slice 
+	var as[3]int=[3]int{1,2,3}
+	var s1[]int=as[:]
+	fmt.Println(s1)
+	// slice to array
+	var bs[3]int=[3]int{}
+	copy(bs[:],s1)// copy(目的,原)
+	fmt.Println(bs)
+}
+
+// 数组/切片判断相等
+func test33(){
+	// 数组判断相等
+	var a1 [3]int=[3]int{1,2,3}
+	var a2 [3]int=[3]int{1,2,3}
+	fmt.Println(a1==a2)
+
+	// byte切片判断相等
+	var bs1 []byte=[]byte{1,2,3}
+	var bs2 []byte=[]byte{1,2,3}
+	fmt.Println(bytes.Equal(bs1,bs2))
+
+	// 普通切片判断相等
+	var s1 []int=[]int{1,2,3}
+	var s2 []int=[]int{1,2,3}
+	// fmt.Println(s1==s2)
+	// 反射性能消耗大
+	fmt.Println(reflect.DeepEqual(s1,s2))
+	// 自己写判断
+	var len int=len(s1)
+	var eql bool=true
+	for i:=0;i<len;i++{
+		if(s1[i]!=s2[i]){
+			eql=false
+			break
+		}
+	}
+	fmt.Println(eql)
+}
+
+//string长度
+func test34(){
+	var astr string="xcrj"
+	fmt.Println(len(astr))
+}
+
+//工厂模式
+func test35(){
+	var test14 Test14=Constructor("xcrj")
+	test14.ShowName()
+}
+type Test14 struct{
+	// public属性
+	Name string
+}
+// 工厂模式创建类，静态工厂
+// public 方法
+func Constructor(name string) Test14{
+	return Test14{name}
+}
+func (this *Test14) ShowName(){
+	fmt.Println(this.Name)
+}
+
+//slice有序列表 set没有 自己根据map创建
+func test36(){
+	var as []int=[]int{}
+	// xcrj go 只有有序列表 没有 无序列表 set
+	// 重复值 后者 不会 覆盖前者 有序列表
+	as=append(as,1)
+	as=append(as,1)
+	// [1,1]
+	fmt.Println(as)
+}
+
+//int slice排序
+func test37(){
+	var as []int=[]int{}
+	as=append(as,1)
+	as=append(as,3)
+	as=append(as,2)
+	// 不需要 as=sort.Ints(as)
+	sort.Ints(as)
+	fmt.Println(as)
+}
+
+//遍历string的每个字符
+func test38(){
+	var str string="abc"
+	for _,c:=range str{
+		fmt.Printf("%c", c)
+	}
+}
+
+//创建空slice
+func test39(){
+	// 创建空slice 必须写0
+	var as []int=make([]int,0)
+	as=append(as,4)
+	as=append(as,5)
+	as=append(as,6)
+}
+
+//slice错误遍历方式
+func test40(){
+	var as []int=make([]int,0)
+	as=append(as,4)
+	// 必须 for _,a:=range as
+	for a:= range as{
+		// 0 1 2, 默认输出索引值
+		fmt.Println(a)
+	}
+}
+
+//map getordefault [string]int, 不存在的key默认为0
+func test41(){
+	var amap map[string]int=make(map[string]int)
+	amap["xcrj"]=1
+	v,ok:=amap["xcrj1"]
+	fmt.Println(v," ",ok)//0, false
+	// get or default
+	var r int=amap["xcrj1"]
+	fmt.Println(r)
+	amap["xcrj1"]=r
+	fmt.Println(amap)
+}
+
+//字符串拼接
+func test42(){
+	var a string="a"
+	var b string ="b"
+	fmt.Println(a+b)//ab
+}
+
+//a slice 插入 b slice 末尾
+func test43(){
+	var as []rune=make([]rune,0)
+	as=append(as,'1')
+	var bs []rune=make([]rune,0)
+	bs=append(bs,'1')
+	bs=append(bs,'2')
+
+	var ras []rune=make([]rune,len(bs)-len(as))
+	// a slice 插入 b slice 末尾
+	ras=append(ras,as...)
+	// [0 49]
+	fmt.Println(ras)
+}
+
+//nil slice
+func test44(){
+	var a []rune=nil
+	// []
+	fmt.Println(a)
+	if 1==1 {
+		a=make([]rune,2)
+	}
+	// [0 0]
+	fmt.Println(a)
 }
