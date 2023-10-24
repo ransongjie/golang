@@ -27,12 +27,10 @@
 
 # oop
 结构体，接口
+- 接口由 方法的聚合体 》类型的聚合体
 
 # err
-异常
-- 程序退出，正常退出 return，异常退出 panic异常 未recover
-- 异常处理，return异常 err!=nil。defer recover异常。
-- 退出处理，defer 释放资源 异常处理
+定义异常，抛出异常，捕获异常，处理异常defer
 
 # generic
 泛型

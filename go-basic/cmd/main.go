@@ -5,13 +5,15 @@ import (
 	"com.xcrj/golang/go-basic/operator"
 	"com.xcrj/golang/go-basic/condition"
 	"com.xcrj/golang/go-basic/oop"
+	"com.xcrj/golang/go-basic/err"
 )
 
 func main() {
 	// dataType()
 	// operators()
 	// conditions()
-	oops()
+	// oops()
+	errs()
 }
 
 func dataType() {
@@ -32,4 +34,8 @@ func conditions(){
 
 func oops(){
 	oop.RunStruct()
+}
+
+func errs(){
+	err.RunErr()
 }
