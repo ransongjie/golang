@@ -11,7 +11,7 @@ func RunDataType() {
 	fmt.Println(aint) //int32或int64
 	var auint uint = 10
 	fmt.Println(auint)  //uint32或uint64
-	var abyte byte = 10 //类似uint8
+	var abyte byte = 10 //等价于 uint8，代表ASCII编码字符，处理Latin语言字符
 	fmt.Println(abyte)
 	var aint8 int8 = 10
 	fmt.Println(aint8)
@@ -41,7 +41,7 @@ func RunDataType() {
 	fmt.Println(abool)
 
 	//字符
-	var arune rune='a'//rune 等同于uint32
+	var arune rune='a'//rune 等价于 int32，代表UTF-8编码字符，处理中文等非Latin语言字符
 	fmt.Printf("字符类型：%c",arune)
 	fmt.Println()
 
@@ -75,13 +75,19 @@ func RunDataType() {
 
 	//指针
 	var bint int = 10
-	var bintPointer *int = &bint
+	var bintPointer *int = &bint //普通类型指针
 	fmt.Println(bintPointer)
 	fmt.Println(*bintPointer)
+	var o uintptr=1 //指针地址运算
+	fmt.Println("o uintptr: ", o) //1
 
 	//string
 	var astring string = "xcrj"
 	fmt.Println(astring)
+
+	//interface{} 任意类型
+	var ti interface{}
+	fmt.Println("interface{}: ", ti) //<nil>
 
 	//时间
 	var atime time.Time = time.Now()

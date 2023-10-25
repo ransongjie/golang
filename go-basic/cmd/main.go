@@ -10,20 +10,22 @@ import (
 )
 
 func main() {
-	// dataType()
+	dataType()
 	// operators()
 	// conditions()
 	// oops()
 	// errs()
-	tests()
+	// tests()
 }
 
 func dataType() {
-	data_type.RunDataType()
+	// data_type.RunDataType()
 	// data_type.RunDefaultValue()
 	// data_type.RunTypeLen()
 	// data_type.RunSliceDetail()
 	// data_type.RunMapDetail()
+	data_type.RunEqual()
+	// data_type.RunTime()
 }
 
 func operators(){

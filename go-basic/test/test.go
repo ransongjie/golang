@@ -6,46 +6,203 @@ import (
 	"reflect"
 	"bytes"
 	"sort"
+	"unsafe"
 )
 
 func RunTest(){
-	test1()
-	test2()
-	test3()
-	test4()
-	test5()
-	test6()
-	test7()
-	test8()
-	test9()
-	test10()
-	
-	test11()
-	test12()
-	test13()
-	test14()
-	test15()
-	test16()
-	test17()
-	test18()
-	test19()
-	test20()
+	test53()
 
-	test21()
-	test22()
-	test23()
-	test24()
-	test25()
-	test26()
-	test27()
-	// test28()
-	test29()
-	test30()
+	// test1()
+	// test2()
+	// test3()
+	// test4()
+	// test5()
+	// test6()
+	// test7()
+	// test8()
+	// test9()
+	// test10()
+	// test11()
+	// test12()
+	// test13()
+	// test14()
+	// test15()
+	// test16()
+	// test17()
+	// test18()
+	// test19()
+	// test20()
+	// test21()
+	// test22()
+	// test23()
+	// test24()
+	// test25()
+	// test26()
+	// test27()
+	// // test28()
+	// test29()
+	// test30()
+	// test41()
+	// test42()
+	// test43()
+	// test44()
+}
 
-	test41()
-	test42()
-	test43()
-	test44()
+func test54(){
+	a:=10.0
+	b:=10.00000000009
+	fmt.Println(a==b)// false
+}
+
+//含有空结构体成员的 结构体 内存对齐
+func test53() {
+	fmt.Println(unsafe.Sizeof(C{})) // 16
+	fmt.Println(unsafe.Sizeof(D{})) // 16
+	fmt.Println(unsafe.Sizeof(E{})) // 24
+    fmt.Println(unsafe.Sizeof(F{})) // 12
+}
+type C struct {
+	a struct{}
+	b int64
+	c int64
+}
+type D struct {
+	a int64
+	b struct{}
+	c int64
+}
+type E struct {
+	a int64
+	b int64
+	c struct{}
+}
+type F struct {
+	a int32
+	b int32
+	c struct{}
+}
+
+//结构体 内存对齐
+func test52(){
+	fmt.Println(unsafe.Sizeof(A{})) // 24
+	fmt.Println(unsafe.Sizeof(B{})) // 16
+}
+type A struct {
+	a int32// 4
+	b int64// 8
+	c int32// 4
+}
+type B struct {
+	a int32// 4
+	b int32// 4
+	c int64// 8
+}
+
+// unsafe.Alignof()
+func test51(){
+	// 基础类型，unsafe.Alignof(x) = min(64位机器/8，unsafe.Sizeof(x))
+	fmt.Println(unsafe.Alignof(int(1))) // 1 = min(8,1)
+    fmt.Println(unsafe.Alignof(int32(1))) // 4 = min(8,4)
+	fmt.Println(unsafe.Alignof(int64(1))) // 8 = min(8,8)
+    fmt.Println(unsafe.Alignof(complex128(1))) // 8 = min(8,16)
+
+	// struct类型，unsafe.Alignof(结构体)=max{unsafe.Alignof(每个字段)}
+	fmt.Println(unsafe.Alignof(A{}))// 8
+	fmt.Println(unsafe.Alignof(B{}))// 8
+}
+
+// unsafe.Pointer和uintptr的区别
+func test50(){
+	var w *W = new(W)
+	//{0，0}
+	fmt.Println(w.b,w.c)
+	//通过指针运算给b变量赋值为10
+	//uintptr(unsafe.Pointer(w)) unsafe.Pointer()类型不可以进行+-运算，uintptr可以
+	b := unsafe.Pointer(uintptr(unsafe.Pointer(w)) + unsafe.Offsetof(w.b))
+	*((*int)(b)) = 10
+	//{10，0}
+	fmt.Println(w.b,w.c)
+}
+type W struct {
+	b int32
+	c int64
+}
+
+// unsafe.Sizeof(x)
+func test49(){
+	var z bool
+	fmt.Println(unsafe.Sizeof(z)) //1B)
+	fmt.Println(unsafe.Sizeof(int(1)))              // 8B
+	fmt.Println(unsafe.Sizeof(uintptr(1)))		    // 8
+	fmt.Println(unsafe.Sizeof(map[string]string{})) // 8
+	fmt.Println(unsafe.Sizeof(string("")))		    // 16
+	fmt.Println(unsafe.Sizeof([]string{}))		    // 24
+	var a interface{}
+	fmt.Println(unsafe.Sizeof(a))                   // 16
+}
+
+// slice是引用数据类型，作函数入参时，没有扩容的前提下（append造成扩容），函数内外的slice是同一个
+func test48(){
+	a:=[]int{1,2,3,4,5}
+	//[1 2 3 4 5]
+	fmt.Println(a)
+	test48a(a)
+	//[2 4 6 8 10]
+	fmt.Println(a)
+}
+func test48a(a []int) {
+	for k, v := range a {
+		a[k] = v * 2
+	}
+	//[2 4 6 8 10]
+	fmt.Println(a)
+}
+
+// 数组是基本数据类型，作函数入参时，函数内外的array不是同一个
+func test47(){
+	arr := [8]int{}
+	for i := 0; i < 8; i++ {
+		arr[i] = i
+	}
+	//[0 1 2 3 4 5 6 7]
+	fmt.Println(arr)
+	test47a(arr)
+	//[0 1 2 3 4 5 6 7]
+	fmt.Println(arr)
+}
+func test47a(arr [8]int){
+	for k, v := range arr {
+		arr[k] = v * 2
+	}
+	//[0  2 4 6 8 10 12 14]
+	fmt.Println(arr)
+}
+
+// 两个nil可能不相等。先比较类型再比较值
+func test46(){
+	var p *int=nil;
+	//interface{}变量被赋值为*int类型nil
+    var q interface{}=p
+    fmt.Println(p==q)//true
+    fmt.Println(p==nil)//true
+    fmt.Println(q==nil)//false interface{}运行时类型是*int, nil是Type类型，类型不一致
+
+	//interface{}变量被赋值为nil
+	var o interface{}=nil
+	fmt.Println(o==nil)//true
+}
+
+//byte 和 rune的类型
+func test45(){
+	var a byte
+    typeOfA := reflect.TypeOf(a)
+	//uint8 uint8
+    fmt.Println(typeOfA.Name(), typeOfA.Kind())
+
+	var b rune
+	typeOfB:=reflect.TypeOf(b)
+	//int32 int32
+	fmt.Println(typeOfB.Name(), typeOfB.Kind())
 }
 
 // func()(sum int) 返回值变量被默认初始化
@@ -441,7 +598,7 @@ func test32(){
 	fmt.Println(bs)
 }
 
-// 数组/切片判断相等
+// 数组/切片判断相等 判等
 func test33(){
 	// 数组判断相等
 	var a1 [3]int=[3]int{1,2,3}
