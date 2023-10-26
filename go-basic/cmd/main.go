@@ -15,11 +15,11 @@ func main() {
 	// dataType()
 	// operators()
 	// conditions()
-	// oops()
+	oops()
 	// errs()
 	// tests()
 	// generics()
-	concurrents()
+	// concurrents()
 }
 
 func dataType() {

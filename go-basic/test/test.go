@@ -49,6 +49,18 @@ func RunTest() {
 	// test44()
 }
 
+// 数组长度必须是常量
+func test57() {
+	// 变量编译不通过
+	// var a int = 10
+	// var as [a]int = [a]int{}
+	// fmt.Println(a, as)
+
+	const b int = 10
+	var bs [b]int = [b]int{}
+	fmt.Println(b, bs)
+}
+
 func test56() {
 	am := map[string]int{}
 	am["xcrj"] = 18

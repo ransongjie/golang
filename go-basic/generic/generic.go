@@ -63,7 +63,7 @@ func testGeneric2() {
 
 	type IFSMap[K int | float32 | string, V int | float32 | string] map[K]V
 
-	var iFSMap IFSMap[string, int] = map[string]int{}
+	var iFSMap IFSMap[string, int] = IFSMap[string, int]{}
 	iFSMap["xcrj"] = 0
 	fmt.Println(iFSMap)
 }
