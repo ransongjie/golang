@@ -43,8 +43,5 @@ interface与泛型
 - 含有方法和类型的接口
 
 # concurrent
-- 任务, goroutine, MPG模型, chan, 锁, sync
-- 主线程执行完毕协程退出
-
-MPG: M(main 主线程) P(协程执行所需上下文) G(协程)
-- M0上G0被阻塞, 新开M1或从线程池中拿M1执行M0上G1...
+- 任务, goroutine, MPG模型, chan，select，context, 锁, sync
+- MPG: M(main 主线程) P(协程执行所需上下文) G(协程)

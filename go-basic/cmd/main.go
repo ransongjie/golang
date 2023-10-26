@@ -1,6 +1,7 @@
 package main
 
 import (
+	"com.xcrj/golang/go-basic/concurrent"
 	"com.xcrj/golang/go-basic/condition"
 	"com.xcrj/golang/go-basic/data_type"
 	"com.xcrj/golang/go-basic/err"
@@ -17,7 +18,8 @@ func main() {
 	// oops()
 	// errs()
 	// tests()
-	generics()
+	// generics()
+	concurrents()
 }
 
 func dataType() {
@@ -52,4 +54,8 @@ func tests() {
 
 func generics() {
 	generic.RunGeneric()
+}
+
+func concurrents() {
+	concurrent.RunChan()
 }
