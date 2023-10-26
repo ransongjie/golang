@@ -4,6 +4,7 @@ import (
 	"com.xcrj/golang/go-basic/condition"
 	"com.xcrj/golang/go-basic/data_type"
 	"com.xcrj/golang/go-basic/err"
+	"com.xcrj/golang/go-basic/generic"
 	"com.xcrj/golang/go-basic/oop"
 	"com.xcrj/golang/go-basic/operator"
 	"com.xcrj/golang/go-basic/test"
@@ -15,7 +16,8 @@ func main() {
 	// conditions()
 	// oops()
 	// errs()
-	tests()
+	// tests()
+	generics()
 }
 
 func dataType() {
@@ -46,4 +48,8 @@ func errs() {
 
 func tests() {
 	test.RunTest()
+}
+
+func generics() {
+	generic.RunGeneric()
 }
