@@ -1,21 +1,21 @@
 package main
 
 import (
-	"com.xcrj/golang/go-basic/data_type"
-	"com.xcrj/golang/go-basic/operator"
 	"com.xcrj/golang/go-basic/condition"
-	"com.xcrj/golang/go-basic/oop"
+	"com.xcrj/golang/go-basic/data_type"
 	"com.xcrj/golang/go-basic/err"
+	"com.xcrj/golang/go-basic/oop"
+	"com.xcrj/golang/go-basic/operator"
 	"com.xcrj/golang/go-basic/test"
 )
 
 func main() {
-	dataType()
+	// dataType()
 	// operators()
 	// conditions()
 	// oops()
 	// errs()
-	// tests()
+	tests()
 }
 
 func dataType() {
@@ -24,26 +24,26 @@ func dataType() {
 	// data_type.RunTypeLen()
 	// data_type.RunSliceDetail()
 	// data_type.RunMapDetail()
-	data_type.RunEqual()
-	// data_type.RunTime()
+	// data_type.RunEqual()
+	data_type.RunTime()
 }
 
-func operators(){
+func operators() {
 	operator.RunOperator()
 }
 
-func conditions(){
+func conditions() {
 	condition.RunCondition()
 }
 
-func oops(){
+func oops() {
 	oop.RunStruct()
 }
 
-func errs(){
+func errs() {
 	err.RunErr()
 }
 
-func tests(){
+func tests() {
 	test.RunTest()
 }
