@@ -1,4 +1,4 @@
-package knapsack_complete
+package common
 
 func Max[T int | int64](a T, b T) T {
 	if a >= b {

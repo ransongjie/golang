@@ -1,5 +1,9 @@
 package knapsack_complete
 
+import (
+	"com.xcrj/golang/algorithm-carl/common"
+)
+
 /**
  * https://leetcode.cn/problems/word-break/submissions/
  * 给定一个非空字符串 s 和一个包含非空单词的列表 wordDict，判定 s 是否可以被拆分为一个或多个在字典中出现的单词。
@@ -11,7 +15,7 @@ package knapsack_complete
 func wordBreak(s string, wordDict []string) bool {
 	//问题转换
 	var bagSize int = len(s)
-	var weight *Set[string] = &Set[string]{} // 是每个单词
+	var weight *common.Set[string] = &common.Set[string]{} // 是每个单词
 	for _, str := range wordDict {
 		weight.Add(str)
 	}

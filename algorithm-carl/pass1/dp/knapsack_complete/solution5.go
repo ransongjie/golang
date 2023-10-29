@@ -1,6 +1,10 @@
 package knapsack_complete
 
-import "math"
+import (
+	"math"
+
+	"com.xcrj/golang/algorithm-carl/common"
+)
 
 /**
  * https://leetcode.cn/problems/coin-change/
@@ -29,7 +33,7 @@ func coinChange(coins []int, amount int) int {
 	for i := 0; i < n; i++ {
 		for j := weight[i]; j < bagSize+1; j++ {
 			if dp[j-weight[i]] != math.MaxInt {
-				dp[j] = Min[int](dp[j], 1+dp[j-weight[i]]) // 泛型函数
+				dp[j] = common.Min[int](dp[j], 1+dp[j-weight[i]]) // 泛型函数
 			}
 		}
 	}
