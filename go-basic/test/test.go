@@ -49,6 +49,28 @@ func RunTest() {
 	// test44()
 }
 
+// 二维切片make
+func test58() {
+	// 创建一个 3x3 的二维切片
+	rows, cols := 3, 3
+	matrix := make([][]int, rows)
+	for i := 0; i < rows; i++ {
+		matrix[i] = make([]int, cols)
+	}
+
+	// 给二维切片赋值
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			matrix[i][j] = i*cols + j
+		}
+	}
+
+	// 打印二维切片
+	for i := 0; i < rows; i++ {
+		fmt.Println(matrix[i])
+	}
+}
+
 // 数组长度必须是常量
 func test57() {
 	// 变量编译不通过
