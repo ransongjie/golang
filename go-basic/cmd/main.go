@@ -8,6 +8,7 @@ import (
 	"com.xcrj/golang/go-basic/generic"
 	"com.xcrj/golang/go-basic/oop"
 	"com.xcrj/golang/go-basic/operator"
+	"com.xcrj/golang/go-basic/reflect"
 	"com.xcrj/golang/go-basic/test"
 )
 
@@ -15,11 +16,12 @@ func main() {
 	// dataType()
 	// operators()
 	// conditions()
-	oops()
+	// oops()
 	// errs()
 	// tests()
 	// generics()
 	// concurrents()
+	reflects()
 }
 
 func dataType() {
@@ -58,4 +60,8 @@ func generics() {
 
 func concurrents() {
 	concurrent.RunChan()
+}
+
+func reflects() {
+	reflect.RunReflect()
 }

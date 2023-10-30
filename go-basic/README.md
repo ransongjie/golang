@@ -9,6 +9,7 @@
 |err|error handling|
 |generic|generic paradigm|
 |concurrent|concurrent|
+|reflect|reflect|
 
 # data_type
 防止溢出，类型分类，存储范围，字面量，默认值，类型转换
@@ -45,3 +46,8 @@ interface与泛型
 # concurrent
 - 任务, goroutine, MPG模型, chan，select，context, 锁, sync
 - MPG: M(main 主线程) P(协程执行所需上下文) G(协程)
+
+# reflect
+- interface{}包含类型指针`_type *_type`，数据指针`data unsafe.Pointer`
+- reflect.Type 反射类型
+- reflect.Value 反射值
