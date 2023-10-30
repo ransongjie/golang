@@ -10,6 +10,7 @@
 |generic|generic paradigm|
 |concurrent|concurrent|
 |reflect|reflect|
+|random|random|
 
 # data_type
 防止溢出，类型分类，存储范围，字面量，默认值，类型转换
@@ -18,7 +19,7 @@
 赋值运算符，算术运算符，比较运算符，逻辑运算符，位运算符，指针相关运算符
 - 只有a++和a--
 
-# control
+# condition
 条件，循环
 - 默认无case穿透，需要穿透要加上fallthrough
 
@@ -51,3 +52,6 @@ interface与泛型
 - interface{}包含类型指针`_type *_type`，数据指针`data unsafe.Pointer`
 - reflect.Type 反射类型
 - reflect.Value 反射值
+
+# random
+- 未设定种子数而产生的随机数是固定数

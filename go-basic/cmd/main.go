@@ -8,6 +8,7 @@ import (
 	"com.xcrj/golang/go-basic/generic"
 	"com.xcrj/golang/go-basic/oop"
 	"com.xcrj/golang/go-basic/operator"
+	"com.xcrj/golang/go-basic/random"
 	"com.xcrj/golang/go-basic/reflect"
 	"com.xcrj/golang/go-basic/test"
 )
@@ -21,7 +22,8 @@ func main() {
 	// tests()
 	// generics()
 	// concurrents()
-	reflects()
+	// reflects()
+	testRandom()
 }
 
 func dataType() {
@@ -64,4 +66,8 @@ func concurrents() {
 
 func reflects() {
 	reflect.RunReflect()
+}
+
+func testRandom() {
+	random.RunRandom()
 }

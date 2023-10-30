@@ -66,6 +66,13 @@ func testStruct4() {
 }
 
 // Type receiver。Type.成员方法
+func testStruct6() {
+	var weight Set[string] = Set[string]{} // 是每个单词
+	weight.Add("xcrj")
+	fmt.Println(weight)
+}
+
+// Type receiver。Type.成员方法
 func testStruct5() {
 	var weight Set[string] = Set[string]{} // 是每个单词
 	weight.Add2("xcrj")
@@ -82,11 +89,14 @@ var void Void
 type Set[K string | int] map[K]Void
 
 // 泛型成员方法
+// 指针receiver set指针
+// 统一用指针receiver。当然对象不需要被修改时可以使用值receiver
 func (set *Set[K]) Add(key K) {
 	(*set)[key] = void
 }
 
 // 泛型成员方法
+// 值eceiver set是副本
 func (set Set[K]) Add2(key K) {
 	set[key] = void
 }

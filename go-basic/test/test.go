@@ -11,7 +11,7 @@ import (
 )
 
 func RunTest() {
-	test51()
+	test61()
 
 	// test1()
 	// test2()
@@ -47,6 +47,43 @@ func RunTest() {
 	// test42()
 	// test43()
 	// test44()
+}
+
+// 测试从集合内外slice是否同1个
+// 结论：不是同一个，集合中放入slice的指针
+type Stack[T int | []int] []T
+
+func test61() {
+	stack := Stack[[]int]{}
+	as := []int{}
+	as = append(as, 10)
+	stack = append(stack, as)
+	ls := stack[0]
+	ls = append(ls, 1, 2, 3, 4, 5, 6)
+	fmt.Println(stack[0][2]) // runtime error: index out of range [2] with length 1
+}
+
+// 引用类型必须赋值
+func test60() (rs []int) {
+	var bs []int
+	// runtime error: index out of range [0] with length 0
+	bs[0] = 10
+	fmt.Println(bs)
+
+	// append会创建新slice
+	rs = append(rs, 1)
+	fmt.Println(rs)
+
+	var as []int
+	as = append(as, 1)
+	fmt.Println(as)
+	return
+}
+
+// nil slice 的len
+func test59() {
+	var as []int = nil
+	fmt.Println(len(as)) // 0
 }
 
 // 二维切片make
