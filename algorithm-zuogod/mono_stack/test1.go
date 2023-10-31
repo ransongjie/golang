@@ -5,45 +5,9 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+
+	. "com.xcrj/golang/common"
 )
-
-func Max[T int | int64](a T, b T) T {
-	if a >= b {
-		return a
-	} else {
-		return b
-	}
-}
-
-// 栈类型
-// slice必须放入指针
-type Stack[T int | int64 | *[]int | *[]int64] []T
-
-func (stack *Stack[T]) push(t T) {
-	*stack = append(*stack, t)
-}
-
-func (stack *Stack[T]) pop() T {
-	if stack.isEmpty() {
-		err := errors.New("Stack is empty.")
-		panic(err)
-	}
-	t := (*stack)[len(*stack)-1]
-	*stack = (*stack)[:len(*stack)-1]
-	return t
-}
-
-func (stack *Stack[T]) peek() T {
-	if stack.isEmpty() {
-		err := errors.New("Stack is empty.")
-		panic(err)
-	}
-	return (*stack)[len(*stack)-1]
-}
-
-func (stack *Stack[T]) isEmpty() bool {
-	return len(*stack) == 0
-}
 
 // 目标：子数组累加和与子数组中最小值的乘积A的最大值
 // [2,1,3] (2+1+3)*1=6
@@ -100,42 +64,42 @@ func fpg(as []int) (rs []Result) {
 	//遍历as
 	for i := 0; i < n; i++ {
 		//单调栈为空，直接放入
-		if stack.isEmpty() {
+		if stack.IsEmpty() {
 			ss := []int{}
 			ss = append(ss, i)
-			stack.push(&ss)
+			stack.Push(&ss)
 			continue
 		}
 		//单调栈顶元素>当前元素，直接放入
-		if as[(*stack.peek())[0]] > as[i] {
+		if as[(*stack.Peek())[0]] > as[i] {
 			ss := []int{}
 			ss = append(ss, i)
-			stack.push(&ss)
+			stack.Push(&ss)
 			continue
 		}
 		//单调栈顶元素=当前元素，放入slice尾部
-		if as[(*stack.peek())[0]] == as[i] {
-			ss := stack.peek()
+		if as[(*stack.Peek())[0]] == as[i] {
+			ss := stack.Peek()
 			*ss = append(*ss, i)
 			continue
 		}
 
 		//单调栈顶元素<当前元素，循环出栈，直到栈空||栈顶元素!<当前元素
 		//出栈元素 in (新栈顶元素,当前元素)，左边界可能不存在，即可能栈空导致无新栈顶元素
-		for !stack.isEmpty() && as[(*stack.peek())[0]] < as[i] {
+		for !stack.IsEmpty() && as[(*stack.Peek())[0]] < as[i] {
 			//当前元素as[i]是右边界
 			rightIdx := i
 			rightVal := as[rightIdx]
 
 			// 出栈元素是子数组中最小值
-			ss := stack.pop()
+			ss := stack.Pop()
 
 			// 新栈顶元素 是左边界
 			// 默认是ss的第1个元素
 			leftIdx := (*ss)[0]
 			leftVal := as[leftIdx]
-			if !stack.isEmpty() {
-				leftIdx = (*stack.peek())[len(*stack.peek())-1]
+			if !stack.IsEmpty() {
+				leftIdx = (*stack.Peek())[len(*stack.Peek())-1]
 				leftVal = as[leftIdx]
 			}
 
@@ -156,8 +120,8 @@ func fpg(as []int) (rs []Result) {
 	}
 
 	//处理单调栈中剩余元素，右边界一定不存在，即没有当前元素
-	for !stack.isEmpty() {
-		ss := stack.pop()
+	for !stack.IsEmpty() {
+		ss := stack.Pop()
 
 		//默认是ss的最后1个元素
 		rightIdx := (*ss)[len(*ss)-1]
@@ -166,8 +130,8 @@ func fpg(as []int) (rs []Result) {
 		//默认是ss的第1个元素
 		leftIdx := (*ss)[0]
 		leftVal := as[leftIdx]
-		if !stack.isEmpty() {
-			leftIdx = (*stack.peek())[len(*stack.peek())-1]
+		if !stack.IsEmpty() {
+			leftIdx = (*stack.Peek())[len(*stack.Peek())-1]
 			leftVal = as[leftIdx]
 		}
 

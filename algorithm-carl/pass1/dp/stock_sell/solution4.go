@@ -1,6 +1,6 @@
 package stock_sell
 
-import . "com.xcrj/golang/algorithm-carl/common"
+import . "com.xcrj/golang/common"
 
 /**
  * 至多k次

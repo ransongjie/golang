@@ -3,7 +3,7 @@ package stock_sell
 import (
 	"math"
 
-	"com.xcrj/golang/algorithm-carl/common"
+	. "com.xcrj/golang/common"
 )
 
 /**
@@ -19,16 +19,16 @@ func maxProfit(prices []int) int {
 	//dp数组
 	//dp[第i天][0/1]=持有股票/现金的最大收益
 	n := len(prices)
-	dp := common.Slice2D[int](n, 2)
+	dp := Slice2D[int](n, 2)
 	//初始状态
 	dp[0][0] = -prices[0]
 	dp[0][1] = 0
 	//状态转移
 	for i := 1; i < n; i++ {
 		//第i天持有股票的最大收益=前1天持有股票的最大收益，第i天持有股票(只能买入1次)
-		dp[i][0] = common.Max[int](dp[i-1][0], -prices[i])
+		dp[i][0] = Max[int](dp[i-1][0], -prices[i])
 		//！！！第i-1天持有股票是一种状态，不是说第i-1天才买入股票，之前的某1天可能就买入了股票
-		dp[i][1] = common.Max[int](dp[i-1][1], dp[i-1][0]+prices[i])
+		dp[i][1] = Max[int](dp[i-1][1], dp[i-1][0]+prices[i])
 	}
 	//结果
 	return dp[n-1][1] //只能买卖1只股票1次，最大收益自然是最后1天持有现金
@@ -40,9 +40,9 @@ func maxProfit1(prices []int) int {
 	profix := 0
 
 	for _, price := range prices {
-		low = common.Min[int](low, price)
+		low = Min[int](low, price)
 		//在low基础上求最大利润
-		profix = common.Max[int](profix, price-low)
+		profix = Max[int](profix, price-low)
 	}
 
 	return profix

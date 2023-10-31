@@ -1,7 +1,7 @@
 package knapsack_complete
 
 import (
-	"com.xcrj/golang/algorithm-carl/common"
+	. "com.xcrj/golang/common"
 )
 
 /**
@@ -15,7 +15,7 @@ import (
 func wordBreak(s string, wordDict []string) bool {
 	//问题转换
 	var bagSize int = len(s)
-	var weight *common.Set[string] = &common.Set[string]{} // 是每个单词
+	var weight *Set[string] = &Set[string]{} // 是每个单词
 	for _, str := range wordDict {
 		weight.Add(str)
 	}

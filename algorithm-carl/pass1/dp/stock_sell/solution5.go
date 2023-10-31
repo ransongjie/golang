@@ -1,6 +1,6 @@
 package stock_sell
 
-import . "com.xcrj/golang/algorithm-carl/common"
+import . "com.xcrj/golang/common"
 
 /**
  * https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/

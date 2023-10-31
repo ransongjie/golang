@@ -3,7 +3,7 @@ package knapsack_multiple
 import (
 	"fmt"
 
-	"com.xcrj/golang/algorithm-carl/common"
+	. "com.xcrj/golang/common"
 )
 
 // 完全背包问题，每个物品的重量为优先个
@@ -37,7 +37,7 @@ func test1(bagSize int, weight []int, value []int, nums []int) int {
 	//先物品再背包。01背包是倒序背包，完全背包是正序背包
 	for i := 0; i < n; i++ {
 		for j := bagSize; j >= weight[i]; j-- {
-			dp[j] = common.Max[int](dp[j], value[i]+dp[j-weight[i]])
+			dp[j] = Max[int](dp[j], value[i]+dp[j-weight[i]])
 		}
 	}
 
@@ -57,7 +57,7 @@ func test2(bagSize int, weight []int, value []int, nums []int) int {
 		for j := bagSize; j >= weight[i]; j-- {
 			for k := 1; k <= nums[i] && j >= k*weight[i]; k++ {
 				// k*value[i]
-				dp[j] = common.Max[int](dp[j], k*value[i]+dp[j-k*weight[i]])
+				dp[j] = Max[int](dp[j], k*value[i]+dp[j-k*weight[i]])
 			}
 		}
 	}

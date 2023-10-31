@@ -668,7 +668,7 @@ func test27() {
 	fmt.Println(al1)
 }
 
-// string 》字符串数组[]rune
+// string 《》字符串数组[]rune
 func test29() {
 	// []rune切片转string
 	var str1 string = "xcrj"

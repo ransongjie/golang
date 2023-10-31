@@ -3,7 +3,7 @@ package knapsack_complete
 import (
 	"math"
 
-	"com.xcrj/golang/algorithm-carl/common"
+	. "com.xcrj/golang/common"
 )
 
 /**
@@ -37,7 +37,7 @@ func numSquares(n int) int {
 	for i := 0; i < n1; i++ {
 		for j := weight[i]; j < bagSize+1; j++ {
 			// 不需要if条件，n一定可以由n个1组成
-			dp[j] = common.Min[int](dp[j], 1+dp[j-weight[i]])
+			dp[j] = Min[int](dp[j], 1+dp[j-weight[i]])
 		}
 	}
 	//结果
