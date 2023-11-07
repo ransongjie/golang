@@ -21,9 +21,10 @@ func main() {
 	// errs()
 	// tests()
 	// generics()
-	// concurrents()
+	// concurrentChan()
+	concurrentContext()
 	// reflects()
-	testRandom()
+	// testRandom()
 }
 
 func dataType() {
@@ -60,8 +61,12 @@ func generics() {
 	generic.RunGeneric()
 }
 
-func concurrents() {
+func concurrentChan() {
 	concurrent.RunChan()
+}
+
+func concurrentContext() {
+	concurrent.RunContext()
 }
 
 func reflects() {
