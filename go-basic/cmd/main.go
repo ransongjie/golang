@@ -22,8 +22,8 @@ func main() {
 	// tests()
 	// generics()
 	// concurrentChan()
-	concurrentContext()
-	// reflects()
+	// concurrentContext()
+	reflects()
 	// testRandom()
 }
 
