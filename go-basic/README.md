@@ -45,8 +45,9 @@ interface与泛型
 - 含有方法和类型的接口
 
 # concurrent
-- 任务, goroutine, MPG模型, chan，select，context, 锁, sync
+- 任务, goroutine, MPG模型, chan，select，context, 锁, sync, `sync/atomic`
 - MPG: M(main 主线程) P(协程执行所需上下文) G(协程)
+- `sync/atomic`：变量进行原子性操作
 
 # reflect
 - interface{}包含类型指针`_type *_type`，数据指针`data unsafe.Pointer`

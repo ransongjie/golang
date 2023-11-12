@@ -21,9 +21,8 @@ func main() {
 	// errs()
 	// tests()
 	// generics()
-	// concurrentChan()
-	// concurrentContext()
-	reflects()
+	concurrents()
+	// reflects()
 	// testRandom()
 }
 
@@ -61,12 +60,10 @@ func generics() {
 	generic.RunGeneric()
 }
 
-func concurrentChan() {
-	concurrent.RunChan()
-}
-
-func concurrentContext() {
-	concurrent.RunContext()
+func concurrents() {
+	// concurrent.RunChan()
+	// concurrent.RunContext()
+	concurrent.RunAtomic()
 }
 
 func reflects() {
