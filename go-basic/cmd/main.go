@@ -6,6 +6,7 @@ import (
 	"com.xcrj/golang/go-basic/data_type"
 	"com.xcrj/golang/go-basic/err"
 	"com.xcrj/golang/go-basic/generic"
+	"com.xcrj/golang/go-basic/io"
 	"com.xcrj/golang/go-basic/oop"
 	"com.xcrj/golang/go-basic/operator"
 	"com.xcrj/golang/go-basic/random"
@@ -21,9 +22,14 @@ func main() {
 	// errs()
 	// tests()
 	// generics()
-	concurrents()
+	// concurrents()
 	// reflects()
 	// testRandom()
+	ioo()
+}
+
+func ioo() {
+	io.RunIO()
 }
 
 func dataType() {
