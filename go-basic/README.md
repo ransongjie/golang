@@ -11,6 +11,7 @@
 |concurrent|concurrent|
 |reflect|reflect|
 |random|random|
+|io|io|
 
 # data_type
 防止溢出，类型分类，存储范围，字面量，默认值，类型转换
@@ -56,3 +57,5 @@ interface与泛型
 
 # random
 - 未设定种子数而产生的随机数是固定数
+
+# io

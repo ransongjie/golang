@@ -6,12 +6,13 @@ import (
 	"reflect"
 	"sort"
 	"strings"
+	"time"
 	"unicode"
 	"unsafe"
 )
 
 func RunTest() {
-	test61()
+	test55()
 
 	// test1()
 	// test2()
@@ -134,28 +135,35 @@ func test56a(am map[string]int) {
 
 // struct 值传递，引用传递
 func test55() {
-	aa := AA{18, "xcrj"}
+	aa := AA{Age: 18, Name: "xcrj", Aain: AAin{Salary: 20.1}}
 	test55a(aa)
-	fmt.Println(aa) //{18 xcrj}
+	fmt.Println(aa) //{18 xcrj {20.1}}
 	test55b(&aa)
-	fmt.Println(aa) //{200 xcrj}
+	time.Sleep(1 * time.Second)
+	fmt.Println(aa) //{200 xcrj {20.1}}
 }
 
 // 将完整拷贝一份，函数内外非同一个对象
 func test55a(aa AA) {
 	aa.Age = 20
-	fmt.Println(aa) //{20 xcrj}
+	aa.Aain.Salary = 300.2
+	fmt.Println(aa) //{20 xcrj {300.2}}
 }
 
 // 传递指针，函数内外是同一个对象
 func test55b(ap *AA) {
 	ap.Age = 200
-	fmt.Println(*ap) //{200 xcrj}
+	fmt.Println(*ap) //{200 xcrj {20.1}}
 }
 
 type AA struct {
 	Age  int
 	Name string
+	Aain AAin
+}
+
+type AAin struct {
+	Salary float32
 }
 
 func test54() {

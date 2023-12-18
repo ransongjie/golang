@@ -20,12 +20,12 @@ func main() {
 	// conditions()
 	// oops()
 	// errs()
-	// tests()
+	tests()
 	// generics()
 	// concurrents()
 	// reflects()
 	// testRandom()
-	ioo()
+	// ioo()
 }
 
 func ioo() {
