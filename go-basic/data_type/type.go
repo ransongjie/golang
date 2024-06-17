@@ -41,8 +41,8 @@ func RunDataType() {
 	fmt.Println(abool)
 
 	//字符
-	var arune rune='a'//rune 等价于 int32，代表UTF-8编码字符，处理中文等非Latin语言字符
-	fmt.Printf("字符类型：%c",arune)
+	var arune rune = 'a' //rune 等价于 int32，代表UTF-8编码字符，处理中文等非Latin语言字符
+	fmt.Printf("字符类型：%c", arune)
 	fmt.Println()
 
 	//复数
@@ -78,7 +78,7 @@ func RunDataType() {
 	var bintPointer *int = &bint //普通类型指针
 	fmt.Println(bintPointer)
 	fmt.Println(*bintPointer)
-	var o uintptr=1 //指针地址运算
+	var o uintptr = 1             //指针地址运算
 	fmt.Println("o uintptr: ", o) //1
 
 	//string
@@ -120,7 +120,7 @@ func RunDataType() {
 	//map
 	var amap map[string]int = map[string]int{"xcrj1": 1, "xcrj2": 2} //创建
 	fmt.Println("amap len=", len(amap))                              //amap len= 2。map无cap()函数
-	var bmap map[string]int = make(map[string]int, 10)               //创建 make指定cap
+	var bmap map[string]int = make(map[string]int, 10)               //创建 make指定len
 	fmt.Println("bmap len=", len(bmap))                              //bmap len= 0
 	amap["xcrj3"] = 3                                                //增
 	amap["xcrj3"] = 30                                               //改
