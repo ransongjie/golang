@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 )
 
 // 接口
@@ -33,10 +32,8 @@ func (p *Square) draw() {
 	fmt.Println(p.name)
 }
 
-// 形状工厂
-type ShapeFactory struct{}
-
-func (p *ShapeFactory) createShape(shapeType string) IShape {
+// 包级别方法，类似其它语言的静态方法
+func createShape(shapeType string) IShape {
 	switch shapeType { //无case穿透
 	case "circle":
 		return &Circle{Shape{"圆形"}} //使用嵌入结构体包装公共属性
@@ -47,8 +44,6 @@ func (p *ShapeFactory) createShape(shapeType string) IShape {
 }
 
 func main() {
-	shapeFactory := ShapeFactory{}
-	circle := shapeFactory.createShape("circle")
-	fmt.Println(reflect.TypeOf(circle))
+	circle := createShape("circle")
 	circle.draw()
 }
