@@ -4,10 +4,10 @@ package singleton
 
 type MySingleton struct{}
 
-// 全局变量
+// 包级别变量
 var instance = &MySingleton{}
 
-// 全局方法
+// 包级别方法
 func GetInstance() *MySingleton {
 	return instance
 }
