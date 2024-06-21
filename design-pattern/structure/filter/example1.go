@@ -67,10 +67,31 @@ func (a *Or) filter(customers [](*Customer)) [](*Customer) {
 	//先分别使用第1个标准，第2个标准过滤，再求并集
 	customers1 := a.criteria1.filter(customers)
 	customers2 := a.criteria2.filter(customers)
-	customers3 := [](*Customer){}
-	customers3 = append(customers3, customers1...)
-	customers3 = append(customers3, customers2...)
+	customers3 := union(customers1, customers2)
 	return customers3
+}
+
+func union(slice1, slice2 [](*Customer)) [](*Customer) {
+	// 创建一个map来存储所有元素，自动去重
+	elementMap := make(map[(*Customer)]struct{})
+
+	// 填充第一个切片的元素
+	for _, v := range slice1 {
+		elementMap[v] = struct{}{}
+	}
+
+	// 填充第二个切片的元素
+	for _, v := range slice2 {
+		elementMap[v] = struct{}{}
+	}
+
+	// 创建一个新的切片来存储并集结果
+	result := make([](*Customer), 0, len(elementMap))
+	for k := range elementMap {
+		result = append(result, k)
+	}
+
+	return result
 }
 
 func main() {
